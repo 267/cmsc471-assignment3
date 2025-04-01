@@ -11,7 +11,7 @@
   font-family: Arial, sans-serif;
 }
 
-#vis svg {
+svg {
   margin: 2rem 0;
   border: 1px solid #ccc;
 }
