@@ -150,7 +150,7 @@ const data = d3
               .attr("height", height)
               .append("g")
               .attr("transform", `translate(${width / 2},${height / 2})`);
-  const pie = d3.pie().value((d) => d.total);
+  const pie = d3.pie().value((d) => Math.log(d.total));
   const arc = d3.arc().innerRadius(0).outerRadius(radius);
   const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
   const portions = svg
