@@ -152,7 +152,7 @@ const data = d3
               .attr("transform", `translate(${width / 2},${height / 2})`);
   const pie = d3.pie().value((d) => Math.log(d.total));
   const arc = d3.arc().innerRadius(0).outerRadius(radius);
-  const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+  const colorScale = d3.scaleOrdinal(d3.schemeDark2);
   const portions = svg
         .selectAll(".portion")
         .data(pie(data))
