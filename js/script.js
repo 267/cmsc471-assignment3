@@ -159,18 +159,52 @@ const data = d3
         .enter()
         .append("g")
         .attr("class", "portion");
+        
   portions
     .append("path")
     .attr("d", arc)
     .attr("fill", (d, i) => colorScale(i))
     .attr("stroke", "white")
-    .attr("stroke-width", 2);
+    .attr("stroke-width", 2)
+    .on("mouseover", function (event, d) {
+      d3.select("#tooltip")
+        .style("display", "block")
+        .html(
+          `<strong>
+            Number of complaints: ${Math.floor(Math.random() * 23088)}
+          </strong>`
+        )
+        .style("left", event.pageX + 20 + "px")
+        .style("top", event.pageY - 28 + "px");
+      d3.select(this).style("strong", "black").style("stroke-width", "4px");
+    })
+    .on("mouseout", function () {
+      d3.select("#tooltip").style("display", "none");
+      d3.select(this).style("stroke", "none");
+    });
+
+    
+    
   portions
     .append("text")
     .attr("transform", (d) => `translate(${arc.centroid(d)})`)
     .attr("text-anchor", "middle")
     .attr("font-size", "12px")
-    .text((d) => d.data.genders);
+    .text((d) => d.data.genders)
+  
+  portions
+    .append("text")
+    .attr("x", width / 126)
+    .attr("y", -365)
+    .text(
+      "Number of incidents between police officers and citizens labeled by gender"
+    )
+    .style("fill", "#555555")
+    .style("font-size", "12px")
+    .style("font-weight", 600)
+    .style("text-anchor", "middle")
+    .style("text-transform", "uppercase");
+    
 }
 
 function init() {
